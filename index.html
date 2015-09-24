@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dice Roll</title>
+    <link rel=stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="http://thediceodyssey.blogspot.com/favicon.ico">
+    <style>
+        body {
+            background-color: goldenrod;
+        }
+    </style>
+</head>
+<body style="text-align: center">
+    <h1>Dice Roll</h1>
+    <div>Input the number of sides and click to roll the virtual dice</div>
+    <input id="sides" placeholder="Number of Sides">
+    <button id="roller" class="btn btn-default">Roll the die</button>
+    <div id="output"></div>
+    <div
+            class="fb-like"
+            data-share="true"
+            data-width="450"
+            data-show-faces="true">
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '704997872963661',
+                xfbml      : true,
+                version    : 'v2.4'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function roll() {
+            var cap = parseInt($('#sides').val());
+            var result = Math.floor(Math.random() * (cap)) + 1;
+            $('#output').html(String(result));
+        }
+        $('#roller').click(roll);
+    </script>
+</body>
+</html>
