@@ -84,8 +84,23 @@ function logout() {
 }
 
 function roll() {
-    var cap = parseInt($('#sides').val());
-    var result = Math.floor(Math.random() * (cap)) + 1;
-    $('#output').html(String(result));
+    var cap = $('#sides').val();
+    if (isNaN(cap)) {
+        $('#output').html("Please enter only a real number")
+    } else if (cap.toLowerCase() === "infinity" || cap.toLowerCase() == "-infinity") {
+        $('#output').html("Please do not enter infinity")
+    } else if (parseInt(cap) < 2) {
+        $('#output').html("Please enter a number at least 2")
+    } else {
+        var result = Math.floor(Math.random() * (parseInt(cap))) + 1;
+        $('#output').html("You rolled a " + String(result));
+    }
+    if (localStorage.clickcount) {
+        localStorage.clickcount = Number(localStorage.clickcount) + 1;
+    } else {
+        localStorage.clickcount = 1;
+    }
+    document.getElementById("result").innerHTML = "You have rolled the dice " +
+        localStorage.clickcount + " time(s).";
 }
 $('#roller').click(roll);
